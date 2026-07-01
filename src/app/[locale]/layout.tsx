@@ -4,6 +4,12 @@ import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { fontSans, fontMono } from '../fonts'
 import '../globals.css'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { WhatsappButton } from '@/components/ui/WhatsappButton'
+import { JsonLd } from '@/components/JsonLd'
+import { organizationSchema } from '@/lib/seo'
+import type { Locale } from '@/types/content'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -23,7 +29,13 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${fontSans.variable} ${fontMono.variable}`}>
       <body>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <JsonLd data={organizationSchema()} />
+        <NextIntlClientProvider messages={messages}>
+          <Navbar locale={locale as Locale} />
+          {children}
+          <Footer locale={locale as Locale} />
+          <WhatsappButton />
+        </NextIntlClientProvider>
       </body>
     </html>
   )
