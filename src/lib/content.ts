@@ -1,9 +1,11 @@
-import type { Locale, Product, Post, Testimonial } from '@/types/content'
+import type { Category, Locale, Product, Post, Testimonial } from '@/types/content'
 import { products } from '@/data/products'
 import { posts } from '@/data/posts'
 import { testimonials } from '@/data/testimonials'
+import { categories } from '@/data/categories'
 
 export function getProducts(_locale: Locale): Product[] { return products }
+export function getCategories(_locale: Locale): Category[] { return categories }
 export function getProduct(slug: string, _locale: Locale): Product | undefined {
   return products.find((p) => p.slug === slug)
 }
