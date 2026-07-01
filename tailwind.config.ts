@@ -11,6 +11,20 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        navy: {
+          DEFAULT: "#001942",
+          800: "#002267",
+        },
+        blue: "#103F88",
+        orange: {
+          DEFAULT: "#FF9306",
+          2: "#FF9706",
+        },
+        "grey-light": "#F5F5F5",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
     },
   },

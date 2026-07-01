@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
+import { fontSans, fontMono } from '../fonts'
 import '../globals.css'
 
 export function generateStaticParams() {
@@ -20,7 +21,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale)
   const messages = await getMessages()
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${fontSans.variable} ${fontMono.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
       </body>
