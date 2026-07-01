@@ -102,11 +102,28 @@ piranusa-web/
 - Cek `sitemap.xml` + `robots.txt` accessible.
 - Cek `hreflang` benar antar locale.
 
-## 9. Out of Scope (YAGNI)
+## 9. Fase Eksekusi & Prioritas
 
-- E-commerce / checkout online (lead tetap via WhatsApp — sesuai model sekarang).
-- Customer portal / login publik (bisa ditambah nanti sebagai collection Payload).
-- Domain final — diputuskan saat deploy; build fase pakai localhost.
+**Prioritas #1 mutlak: SEO + performance.** Semua benchmark (PageSpeed/CrUX, Lighthouse, GTmetrix) harus HIJAU. Angka baseline WP di scorecard = target yang dilampaui.
+
+**Tahap 1 (SEKARANG): Frontend + SEO teknis**
+- 6 halaman mengikuti Figma, SSG + Server Components + `next/image`
+- SEO layer penuh: sitemap, robots, schema JSON-LD, metadata+OG+hreflang per locale
+- **Mock data lokal** (`src/data/*.ts`) dengan shape SAMA PERSIS dengan collection Payload → saat backend nyusul, cukup ganti sumber import, komponen tak berubah (zero rework)
+- Verifikasi tiap halaman: Lighthouse 95+/SEO 100, CWV pass, <2MB, GTmetrix A
+
+**Tahap 2 (nanti): Backend Payload**
+- Payload collections + admin + Postgres, ganti mock data → API
+
+**Tahap 3 (nanti): Migrasi WP**
+- Crawl, 301, import artikel, cutover, monitor GSC
+
+### Out of Scope (YAGNI)
+- Backend/Payload/Postgres/admin — DITUNDA (Tahap 2)
+- Migrasi WP / 301 — DITUNDA (Tahap 3)
+- E-commerce / checkout — lead via WhatsApp
+- Customer portal / login publik
+- Domain final — build fase pakai localhost
 
 ## 10. Definisi Sukses
 
