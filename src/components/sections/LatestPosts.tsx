@@ -24,7 +24,9 @@ export function LatestPosts({ locale, posts }: { locale: Locale; posts: Post[] }
   return (
     <section className="bg-navy-800 text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-orange">{t.eyebrow}</p>
+        <p className="accent-bar font-mono text-xs uppercase tracking-[0.25em] text-orange">
+          {t.eyebrow}
+        </p>
         <h2 className="mt-4 max-w-2xl font-sans text-2xl font-extrabold md:text-4xl">
           {t.heading}
         </h2>

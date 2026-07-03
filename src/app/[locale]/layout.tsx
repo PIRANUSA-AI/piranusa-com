@@ -8,8 +8,24 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { WhatsappButton } from '@/components/ui/WhatsappButton'
 import { JsonLd } from '@/components/JsonLd'
-import { organizationSchema } from '@/lib/seo'
+import { organizationSchema, SITE_URL } from '@/lib/seo'
 import type { Locale } from '@/types/content'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Piranusa — Distributor Resmi ZWCAD & Archicad Indonesia',
+    template: '%s | Piranusa',
+  },
+  applicationName: 'Piranusa',
+  manifest: '/manifest.webmanifest',
+  icons: { icon: '/favicon.ico' },
+}
+
+export const viewport = {
+  themeColor: '#0a0a0a',
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))

@@ -4,7 +4,7 @@ import { getProducts, getPosts } from '@/lib/content'
 import { routing } from '@/i18n/routing'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['', '/products', '/about', '/contact', '/blog']
+  const staticPaths = ['', '/products', '/training', '/about', '/contact', '/blog']
   const entries: MetadataRoute.Sitemap = []
   for (const locale of routing.locales) {
     for (const p of staticPaths) entries.push({ url: `${SITE_URL}/${locale}${p}`, changeFrequency: 'weekly', priority: p === '' ? 1 : 0.8 })

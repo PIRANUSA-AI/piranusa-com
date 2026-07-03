@@ -3,28 +3,34 @@ import type { Locale, Product, Post } from '@/types/content'
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 const COMPANY = 'PT Piranti Nusantara Teknologi'
+const DEFAULT_OG = '/opengraph-image'
 
 export function buildMetadata(opts: {
   title: string; description: string; path: string; locale: Locale; image?: string
+  type?: 'website' | 'article'
 }): Metadata {
-  const { title, description, path, locale, image } = opts
+  const { title, description, path, locale, image, type = 'website' } = opts
   const clean = path.startsWith('/') ? path : `/${path}`
-  const url = `${SITE_URL}/${locale}${clean === '/' ? '' : clean}`
+  const suffix = clean === '/' ? '' : clean
+  const url = `${SITE_URL}/${locale}${suffix}`
+  const ogImage = image ?? `${SITE_URL}${DEFAULT_OG}`
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: url,
       languages: {
-        id: `${SITE_URL}/id${clean === '/' ? '' : clean}`,
-        en: `${SITE_URL}/en${clean === '/' ? '' : clean}`,
+        id: `${SITE_URL}/id${suffix}`,
+        en: `${SITE_URL}/en${suffix}`,
+        'x-default': `${SITE_URL}/id${suffix}`,
       },
     },
     openGraph: {
-      title, description, url, siteName: 'Piranusa', locale,
-      type: 'website', images: image ? [{ url: image }] : undefined,
+      title, description, url, siteName: 'Piranusa',
+      locale: locale === 'id' ? 'id_ID' : 'en_US',
+      type, images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
-    twitter: { card: 'summary_large_image', title, description },
+    twitter: { card: 'summary_large_image', title, description, images: [ogImage] },
   }
 }
 

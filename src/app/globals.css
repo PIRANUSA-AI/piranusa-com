@@ -3,25 +3,115 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #001942;
+  --foreground: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  /* thin left accent bar used across section eyebrows in the design */
+  .accent-bar {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .accent-bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -0.35em;
+    bottom: -0.35em;
+    width: 4px;
+    border-radius: 2px;
+    background: #ff9706;
+  }
+  /* slow vertical float for hero wireframe render */
+  .animate-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+
+  /* long-form blog article body (rendered from stored HTML) */
+  .prose-article {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+  .prose-article > * + * {
+    margin-top: 1.5rem;
+  }
+  .prose-article h2 {
+    margin-top: 2.75rem;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #fff;
+  }
+  .prose-article h3 {
+    margin-top: 2rem;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .prose-article a {
+    color: #ff9706;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-article a:hover {
+    color: rgba(255, 151, 6, 0.8);
+  }
+  .prose-article ul,
+  .prose-article ol {
+    padding-left: 1.5rem;
+  }
+  .prose-article ul {
+    list-style: disc;
+  }
+  .prose-article ol {
+    list-style: decimal;
+  }
+  .prose-article li + li {
+    margin-top: 0.5rem;
+  }
+  .prose-article strong {
+    color: #fff;
+    font-weight: 700;
+  }
+  .prose-article blockquote {
+    border-left: 4px solid #ff9706;
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float {
+    animation: none;
   }
 }

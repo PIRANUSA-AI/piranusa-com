@@ -1,12 +1,22 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { getProducts, getTestimonials, getPosts } from '@/lib/content'
+import { getPosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/seo'
 import type { Locale } from '@/types/content'
 import { Hero } from '@/components/sections/Hero'
-import { FeaturedProducts } from '@/components/sections/FeaturedProducts'
-import { Testimonials } from '@/components/sections/Testimonials'
-import { LatestPosts } from '@/components/sections/LatestPosts'
+import { IndustrySolutions } from '@/components/sections/IndustrySolutions'
+import { BrandPartners } from '@/components/sections/BrandPartners'
+import { WhyPiranusa } from '@/components/sections/WhyPiranusa'
+import { StickyImageReveal } from '@/components/sections/StickyImageReveal'
+import { ImageSectionTwo } from '@/components/sections/ImageSectionTwo'
+import { TrainingServices } from '@/components/sections/TrainingServices'
+
+import { PromoEvents } from '@/components/sections/PromoEvents'
+import { VideoTestimonials } from '@/components/sections/VideoTestimonials'
+import { TrustedBy } from '@/components/sections/TrustedBy'
+import { FaqSection } from '@/components/sections/FaqSection'
+
+import { ConsultationCta } from '@/components/sections/ConsultationCta'
 
 const META = {
   id: {
@@ -41,16 +51,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale)
 
   const typedLocale = locale as Locale
-  const products = getProducts(typedLocale)
-  const testimonials = getTestimonials(typedLocale)
   const posts = getPosts(typedLocale)
 
   return (
     <main>
       <Hero locale={typedLocale} />
-      <FeaturedProducts locale={typedLocale} products={products} />
-      <Testimonials locale={typedLocale} testimonials={testimonials} />
-      <LatestPosts locale={typedLocale} posts={posts} />
+      <WhyPiranusa locale={typedLocale} />
+      <StickyImageReveal />
+      <IndustrySolutions locale={typedLocale} />
+      <BrandPartners locale={typedLocale} />
+      <ImageSectionTwo />
+      <TrainingServices locale={typedLocale} />
+      <PromoEvents locale={typedLocale} />
+      <VideoTestimonials locale={typedLocale} />
+      <TrustedBy locale={typedLocale} />
+      <FaqSection locale={typedLocale} />
+      <ConsultationCta locale={typedLocale} />
     </main>
   )
 }

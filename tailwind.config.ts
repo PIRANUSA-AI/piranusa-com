@@ -17,8 +17,7 @@ const config: Config = {
         },
         blue: "#103F88",
         orange: {
-          DEFAULT: "#FF9306",
-          2: "#FF9706",
+          DEFAULT: "#FF9706",
         },
         "grey-light": "#F5F5F5",
       },
