@@ -28,7 +28,7 @@ describe('Homepage', () => {
     const ui = await Home({ params: Promise.resolve({ locale: 'id' }) } as any)
     render(ui)
     expect(screen.getAllByText('ZWCAD').length).toBeGreaterThan(0)
-    expect(screen.getByText('Archicad')).toBeTruthy()
+    expect(screen.getAllByText('Archicad').length).toBeGreaterThan(0)
   })
 
   it('renders testimonials with client names', async () => {

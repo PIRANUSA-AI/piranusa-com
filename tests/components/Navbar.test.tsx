@@ -14,13 +14,13 @@ describe('Navbar', () => {
     expect(screen.getByRole('navigation')).toBeTruthy()
   })
 
-  it('renders the four in-scope links and omits Training & Layanan', () => {
+  it('renders all five nav links including Training & Layanan', () => {
     render(<Navbar locale="id" />)
     expect(screen.getByText('PRODUK')).toBeTruthy()
     expect(screen.getByText('TENTANG KAMI')).toBeTruthy()
+    expect(screen.getByText('TRAINING & LAYANAN')).toBeTruthy()
     expect(screen.getByText('ARTIKEL')).toBeTruthy()
     expect(screen.getByText('HUBUNGI KAMI')).toBeTruthy()
-    expect(screen.queryByText(/TRAINING/i)).toBeNull()
   })
 
   it('renders EN labels for locale en', () => {

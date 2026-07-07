@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 describe('seo', () => {
   it('builds metadata with canonical + hreflang', () => {
     const m = buildMetadata({ title: 'X', description: 'd', path: '/products', locale: 'id' })
-    expect(m.title).toBe('X')
+    expect(m.title).toEqual({ absolute: 'X' })
     expect(m.alternates?.canonical).toContain('/id/products')
     expect(m.alternates?.languages?.['en']).toContain('/en/products')
     expect(m.openGraph?.title).toBe('X')
